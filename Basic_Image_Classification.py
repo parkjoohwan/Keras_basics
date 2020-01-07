@@ -166,20 +166,11 @@ plt.show()
 
 # 테스트 세트에서 이미지 하나를 선택합니다
 img = test_images[55]
-
-print(img.shape)
-
 # 이미지 하나만 사용할 때도 배치에 추가합니다
 img = (np.expand_dims(img,0))
-
-print(img.shape)
-
 predictions_single = model.predict(img)
-
-print(predictions_single)
-
 plot_value_array(0, predictions_single, test_labels)
 _ = plt.xticks(range(10), class_names, rotation=45)
 
 print('해당 이미지의 예측 라벨 : {} '.format(class_names[np.argmax(predictions_single[0])]))
-print('해당 이미지의 라벨 : {} '.format(test_labels[55]))
+print('해당 이미지의 라벨 : {} '.format(class_names[test_labels[55]]))
