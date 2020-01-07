@@ -6,7 +6,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import tensorflow_datasets as tfds
 
-print("버전: ", tf.__version__)
+print("TensorFlow 버전: ", tf.__version__)
 print("즉시 실행 모드: ", tf.executing_eagerly())
 print("허브 버전: ", hub.__version__)
 print("GPU ", "사용 가능" if tf.config.experimental.list_physical_devices("GPU") else "사용 불가능")
@@ -35,7 +35,7 @@ print('data label 형태 및 내용 : {}'.format(train_labels_batch))
 ########################################################################################
 
 """
-입력 데이터는 text, 예측 값은 긍정/부정(0,1)
+입력 데이터는 text, 예측 값은 긍정/부정(1/0)
 
 텍스트를 임베딩 벡터로 변환, 첫번째 layer로 pre-trained 된 텍스트 임베딩 사용
 """
