@@ -1,4 +1,6 @@
 /venv_gpu/
 /.idea
-/training_1/
-/training_2/
+/ML_Basic/checkpoints/
+/ML_Basic/saved_models/
+/ML_Basic/training_1/
+/ML_Basic/training_2/
