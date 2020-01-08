@@ -13,7 +13,9 @@
 - [과대적합과 과소적합(Overfit_And_Underfit.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/ML_Basic/Overfit_And_Underfit.py) - [참고페이지](https://www.tensorflow.org/tutorials/keras/regression?hl=ko) 
 - [모델 Save 및 Load(Save_and_Load.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/ML_Basic/Save_and_Load.py) - [참고페이지](https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko)
 
-- [CSV 파일 로드 및 생존 여부 예측(Load_CSV_Data)](https://github.com/parkjoohwan/Keras_basics/blob/master/Load_and_Preprocess_Data/Load_CSV_Data.py) - [참고페이지](https://www.tensorflow.org/tutorials/load_data/csv?hl=ko)
+- [CSV 파일 로드 및 생존 여부 예측(Load_CSV_Data.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Load_and_Preprocess_Data/Load_CSV_Data.py) - [참고페이지](https://www.tensorflow.org/tutorials/load_data/csv?hl=ko)
+- [npz 파일 로드 및 dataset 활용(Load_Numpy_Data.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Load_and_Preprocess_Data/Load_Numpy_Data.py) - [참고페이지](https://www.tensorflow.org/tutorials/load_data/numpy?hl=ko)
+- [pandas dataframe으로 dataset 활용(Load_Numpy_Data.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Load_and_Preprocess_Data/Load_Numpy_Data.py) - [참고페이지](https://www.tensorflow.org/tutorials/load_data/pandas_dataframe?hl=ko)
 
 # 필요 패키지 설치
 

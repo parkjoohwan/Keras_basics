@@ -174,7 +174,7 @@ print('\nnumeric_cloumn : {}'.format(numeric_column))
 print('\n샘플 배치\n{}'.format(example_batch['numeric']))
 
 
-# 카데고리적인 Data ex) 성별 : 남/여
+# 카데고리적인 Data ex) 성별 : 남/여 변환
 CATEGORIES = {
     'sex': ['male', 'female'],
     'class' : ['First', 'Second', 'Third'],
