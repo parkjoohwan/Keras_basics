@@ -1,4 +1,3 @@
-
 """
 회귀(regression)는 가격이나 확률 같이 연속된 출력 값을 예측하는 목적
 분류(classification)는 여러개의 클래스 중 하나의 클래스를 선택하는 목적
@@ -19,18 +18,18 @@ from tensorflow.keras import layers
 #                                데이터 로드                                            #
 ########################################################################################
 
-dataset_path = keras.utils.get_file("auto-mpg.data", "http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data")
+dataset_path = keras.utils.get_file("auto-mpg.data",
+                                    "http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data")
 print('데이터 셋 위치 확인 : {}'.format(dataset_path))
 
-column_names = ['MPG','Cylinders','Displacement','Horsepower','Weight',
+column_names = ['MPG', 'Cylinders', 'Displacement', 'Horsepower', 'Weight',
                 'Acceleration', 'Model Year', 'Origin']
 raw_dataset = pd.read_csv(dataset_path, names=column_names,
-                      na_values = "?", comment='\t',
-                      sep=" ", skipinitialspace=True)
+                          na_values="?", comment='\t',
+                          sep=" ", skipinitialspace=True)
 
 dataset = raw_dataset.copy()
 print('데이터 셋 갯수 확인 : {}\n데이터 일부 확인 : \n{}'.format(len(dataset), dataset.tail()))
-
 
 ########################################################################################
 #                                데이터 전처리                                          #
@@ -42,7 +41,7 @@ print('데이터 셋 갯수 확인 : {}\n데이터 일부 확인 : \n{}'.format(
 
 print('----- 항목 별 누락된 데이터 갯수 확인 -----\n{}'.format(dataset.isna().sum()))
 
-dataset = dataset.dropna() # 데이터가 누락된 행 삭제
+dataset = dataset.dropna()  # 데이터가 누락된 행 삭제
 
 print("\n\n누락 된 행 제거 후 데이터 셋 갯수 확인 : {}\n\n".format(len(dataset)))
 
@@ -79,9 +78,12 @@ print("전반적 통계 확인 : \n{}".format(train_stats))
 train_labels = train_dataset.pop('MPG')
 test_labels = test_dataset.pop('MPG')
 
+
 # 데이터 정규화 함수
 def norm(x):
-  return (x - train_stats['mean']) / train_stats['std']
+    return (x - train_stats['mean']) / train_stats['std']
+
+
 normed_train_data = norm(train_dataset)
 normed_test_data = norm(test_dataset)
 
@@ -107,6 +109,7 @@ def build_model():
 
     return model
 
+
 model = build_model()
 
 model.summary()
@@ -116,18 +119,20 @@ example_result = model.predict(example_batch)
 
 print('10개 샘플 결과 :\n{}'.format(example_result))
 
+
 # 에포크가 끝날 때마다 점(.)을 출력해 훈련 진행 과정을 표시합니다
 class PrintDot(keras.callbacks.Callback):
-  def on_epoch_end(self, epoch, logs):
-    if epoch % 100 == 0: print('')
-    print('.', end='')
+    def on_epoch_end(self, epoch, logs):
+        if epoch % 100 == 0: print('')
+        print('.', end='')
+
 
 EPOCHS = 1000
 
 history = model.fit(
-  normed_train_data, train_labels,
-  epochs=EPOCHS, validation_split = 0.2, verbose=0,
-  callbacks=[PrintDot()])
+    normed_train_data, train_labels,
+    epochs=EPOCHS, validation_split=0.2, verbose=0,
+    callbacks=[PrintDot()])
 
 ########################################################################################
 #                                모델 평가                                             #
@@ -137,32 +142,34 @@ hist = pd.DataFrame(history.history)
 hist['epoch'] = history.epoch
 print("\n통계치\n{}".format(hist.tail()))
 
+
 def plot_history(history):
-  hist = pd.DataFrame(history.history)
-  hist['epoch'] = history.epoch
+    hist = pd.DataFrame(history.history)
+    hist['epoch'] = history.epoch
 
-  plt.figure(figsize=(8,12))
+    plt.figure(figsize=(8, 12))
 
-  plt.subplot(2,1,1)
-  plt.xlabel('Epoch')
-  plt.ylabel('Mean Abs Error [MPG]')
-  plt.plot(hist['epoch'], hist['mae'],
-           label='Train Error')
-  plt.plot(hist['epoch'], hist['val_mae'],
-           label = 'Val Error')
-  plt.ylim([0,5])
-  plt.legend()
+    plt.subplot(2, 1, 1)
+    plt.xlabel('Epoch')
+    plt.ylabel('Mean Abs Error [MPG]')
+    plt.plot(hist['epoch'], hist['mae'],
+             label='Train Error')
+    plt.plot(hist['epoch'], hist['val_mae'],
+             label='Val Error')
+    plt.ylim([0, 5])
+    plt.legend()
 
-  plt.subplot(2,1,2)
-  plt.xlabel('Epoch')
-  plt.ylabel('Mean Square Error [$MPG^2$]')
-  plt.plot(hist['epoch'], hist['mse'],
-           label='Train Error')
-  plt.plot(hist['epoch'], hist['val_mse'],
-           label = 'Val Error')
-  plt.ylim([0,20])
-  plt.legend()
-  plt.show()
+    plt.subplot(2, 1, 2)
+    plt.xlabel('Epoch')
+    plt.ylabel('Mean Square Error [$MPG^2$]')
+    plt.plot(hist['epoch'], hist['mse'],
+             label='Train Error')
+    plt.plot(hist['epoch'], hist['val_mse'],
+             label='Val Error')
+    plt.ylim([0, 20])
+    plt.legend()
+    plt.show()
+
 
 plot_history(history)
 
@@ -173,7 +180,7 @@ model = build_model()
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 
 history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
-                    validation_split = 0.2, verbose=0, callbacks=[early_stop, PrintDot()])
+                    validation_split=0.2, verbose=0, callbacks=[early_stop, PrintDot()])
 
 plot_history(history)
 
@@ -188,11 +195,11 @@ plt.xlabel('True Values [MPG]')
 plt.ylabel('Predictions [MPG]')
 plt.axis('equal')
 plt.axis('square')
-plt.xlim([0,plt.xlim()[1]])
-plt.ylim([0,plt.ylim()[1]])
+plt.xlim([0, plt.xlim()[1]])
+plt.ylim([0, plt.ylim()[1]])
 _ = plt.plot([-100, 100], [-100, 100])
 
 error = test_predictions - test_labels
-plt.hist(error, bins = 25)
+plt.hist(error, bins=25)
 plt.xlabel("Prediction Error [MPG]")
 _ = plt.ylabel("Count")

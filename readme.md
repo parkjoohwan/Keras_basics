@@ -11,7 +11,7 @@
 - [영화 리뷰를 사용한 텍스트 분류(Text_Classification_with_preprocessed_text.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Basic_Image_Classification.py) - [참고페이지](https://www.tensorflow.org/tutorials/keras/text_classification?hl=ko)
 - [자동차 연비 예측하기 : 회귀(Regression.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Regression.py) - [참고페이지](https://www.tensorflow.org/tutorials/keras/regression?hl=ko) 
 - [모델 Save 및 Load(Save_and_Load.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Save_and_Load.py) - [참고페이지](https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko)
-
+- [CSV 파일 로드 및 생존 여부 예측(Load_CSV_Data)](https://github.com/parkjoohwan/Keras_basics/blob/master/Load_CSV_Data.py) - [참고페이지](https://www.tensorflow.org/tutorials/load_data/csv?hl=ko)
 
 # 필요 패키지 설치
 

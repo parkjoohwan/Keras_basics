@@ -46,9 +46,9 @@ hub_layer = hub.KerasLayer(embedding, input_shape=[],
 hub_layer(train_examples_batch[:3])
 
 model = tf.keras.Sequential()
-model.add(hub_layer)    # 텍스트를 임베딩 벡터로 매핑하는 pre-trained된 tensorflow hub 모델 output - (num_examples, embedding_dimension)
-model.add(tf.keras.layers.Dense(16, activation='relu')) # hidden layer
-model.add(tf.keras.layers.Dense(1, activation='sigmoid'))   # 1개의 출력, 0~1 사이의 값
+model.add(hub_layer)  # 텍스트를 임베딩 벡터로 매핑하는 pre-trained된 tensorflow hub 모델 output - (num_examples, embedding_dimension)
+model.add(tf.keras.layers.Dense(16, activation='relu'))  # hidden layer
+model.add(tf.keras.layers.Dense(1, activation='sigmoid'))  # 1개의 출력, 0~1 사이의 값
 
 model.summary()
 
@@ -71,4 +71,4 @@ history = model.fit(train_data.shuffle(10000).batch(512),
 
 results = model.evaluate(test_data.batch(512), verbose=2)
 for name, value in zip(model.metrics_names, results):
-  print("%s: %.3f" % (name, value))
+    print("%s: %.3f" % (name, value))

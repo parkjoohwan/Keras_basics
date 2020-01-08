@@ -37,7 +37,7 @@ print("첫 학습 샘플 단어 갯수: {}".format(len(train_data[0])))
 word_index = imdb.get_word_index()
 
 # 처음 몇 개 인덱스는 사전에 정의되어 있습니다
-word_index = {k:(v+3) for k,v in word_index.items()}
+word_index = {k: (v + 3) for k, v in word_index.items()}
 word_index["<PAD>"] = 0
 word_index["<START>"] = 1
 word_index["<UNK>"] = 2  # unknown
@@ -45,9 +45,11 @@ word_index["<UNUSED>"] = 3
 
 reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])
 
+
 # 정수로 되어있는 데이터를 문자로 decode하는 함수
 def decode_review(text):
     return ' '.join([reverse_word_index.get(i, '?') for i in text])
+
 
 # 함수 테스트
 print("첫 샘플 데이터 문자로 보기 : {}".format(decode_review(train_data[0])))
@@ -99,10 +101,11 @@ print('샘플의 내용이 어떤지 확인\n첫번째 샘플:\n{}\n임의의 �
 vocab_size = 10000
 
 model = keras.Sequential()
-model.add(keras.layers.Embedding(vocab_size, 16, input_shape=(None,)))  # Embedding 층 output (batch, sequence, embedding)
-model.add(keras.layers.GlobalAveragePooling1D())                        # sequence 차원에 대해 평균을 계산, 고정된 길이의 출력벡터 반환
-model.add(keras.layers.Dense(16, activation='relu'))                    # 16개의 hidden unit을 가진 fc-layer
-model.add(keras.layers.Dense(1, activation='sigmoid'))                  # 출력
+model.add(
+    keras.layers.Embedding(vocab_size, 16, input_shape=(None,)))  # Embedding 층 output (batch, sequence, embedding)
+model.add(keras.layers.GlobalAveragePooling1D())  # sequence 차원에 대해 평균을 계산, 고정된 길이의 출력벡터 반환
+model.add(keras.layers.Dense(16, activation='relu'))  # 16개의 hidden unit을 가진 fc-layer
+model.add(keras.layers.Dense(1, activation='sigmoid'))  # 출력
 
 model.summary()
 
@@ -129,7 +132,7 @@ history = model.fit(partial_x_train,
 #                                모델 평가                                              #
 ########################################################################################
 
-results = model.evaluate(test_data,  test_labels, verbose=2)
+results = model.evaluate(test_data, test_labels, verbose=2)
 
 print(results)
 
@@ -170,7 +173,7 @@ plt.legend()
 
 plt.show()
 
-plt.clf()   # 그림을 초기화합니다
+plt.clf()  # 그림을 초기화합니다
 
 # accuracy / validation accuracy 그래프
 

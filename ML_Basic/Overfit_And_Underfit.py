@@ -10,6 +10,7 @@ NUM_WORDS = 10000
 
 (train_data, train_labels), (test_data, test_labels) = keras.datasets.imdb.load_data(num_words=NUM_WORDS)
 
+
 def multi_hot_sequences(sequences, dimension):
     # 0으로 채워진 (len(sequences), dimension) 크기의 행렬을 만듭니다
     results = np.zeros((len(sequences), dimension))
@@ -53,7 +54,6 @@ Overfitting을 막는 가장 간단한 방법은 모델의 규모를 축소하�
 이 코드에서는 Dense 층만 사용하는 간단한 기준 모델을 만들고,
 작은 규모의 모델과 큰 버전의 모델을 만들어 비교한다.
 """
-
 
 ########################################################################################
 #                                모델 구성                                             #
@@ -110,7 +110,7 @@ bigger_model = keras.models.Sequential([
 
 bigger_model.compile(optimizer='adam',
                      loss='binary_crossentropy',
-                     metrics=['accuracy','binary_crossentropy'])
+                     metrics=['accuracy', 'binary_crossentropy'])
 
 bigger_model.summary()
 
@@ -121,22 +121,23 @@ bigger_history = bigger_model.fit(train_data, train_labels,
                                   validation_data=(test_data, test_labels),
                                   verbose=2)
 
+
 # 학습 과정 그래프 실선 : loss,  점선 : validation loss
 def plot_history(histories, key='binary_crossentropy'):
-  plt.figure(figsize=(16,10))
+    plt.figure(figsize=(16, 10))
 
-  for name, history in histories:
-    val = plt.plot(history.epoch, history.history['val_'+key],
-                   '--', label=name.title()+' Val')
-    plt.plot(history.epoch, history.history[key], color=val[0].get_color(),
-             label=name.title()+' Train')
+    for name, history in histories:
+        val = plt.plot(history.epoch, history.history['val_' + key],
+                       '--', label=name.title() + ' Val')
+        plt.plot(history.epoch, history.history[key], color=val[0].get_color(),
+                 label=name.title() + ' Train')
 
-  plt.xlabel('Epochs')
-  plt.ylabel(key.replace('_',' ').title())
-  plt.legend()
+    plt.xlabel('Epochs')
+    plt.ylabel(key.replace('_', ' ').title())
+    plt.legend()
 
-  plt.xlim([0,max(history.epoch)])
-  plt.show()
+    plt.xlim([0, max(history.epoch)])
+    plt.show()
 
 
 plot_history([('baseline', baseline_history),
@@ -185,7 +186,6 @@ l2_model_history = l2_model.fit(train_data, train_labels,
 plot_history([('baseline', baseline_history),
               ('l2', l2_model_history)])
 
-
 """
 신경망에서 가장 효과적이고 널리 사용하는 규제 기법은 dropout이다.
 이 dropout을 layer에 적용하면 훈련하는 동안 층의 출력 특성을 랜덤하게 0으로 만든다.
@@ -193,7 +193,6 @@ plot_history([('baseline', baseline_history),
 
 단, 테스트 단계에서는 dropout을 적용하지 않는다.
 """
-
 
 # dropout을 적용한 모델
 
@@ -207,7 +206,7 @@ dpt_model = keras.models.Sequential([
 
 dpt_model.compile(optimizer='adam',
                   loss='binary_crossentropy',
-                  metrics=['accuracy','binary_crossentropy'])
+                  metrics=['accuracy', 'binary_crossentropy'])
 
 dpt_model_history = dpt_model.fit(train_data, train_labels,
                                   epochs=20,
@@ -217,4 +216,3 @@ dpt_model_history = dpt_model.fit(train_data, train_labels,
 
 plot_history([('baseline', baseline_history),
               ('dropout', dpt_model_history)])
-
