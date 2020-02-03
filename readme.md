@@ -20,6 +20,7 @@
 - [pandas dataframe으로 dataset 활용(Load_Numpy_Data.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Load_and_Preprocess_Data/Load_Numpy_Data.py) - [참고페이지](https://www.tensorflow.org/tutorials/load_data/pandas_dataframe?hl=en)
 
 - [Premade estimator를 이용한 홍채 분류(Premade_Estimator_Iris.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Estimator/Premade_Estimator_Iris.py) - [참고페이지](https://www.tensorflow.org/tutorials/estimator/premade?hl=en)
+- [Estimators를 이용해 선형 모델 만들기(Linear_Model_With_Estimators.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Estimator/Linear_Model_With_Estimators.py) - [참고페이지](https://www.tensorflow.org/tutorials/estimator/linear?hl=en)
 # 필요 패키지 설치
 
 ```
