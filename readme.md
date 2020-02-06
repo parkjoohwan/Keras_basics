@@ -21,11 +21,16 @@
 
 - [Premade estimator를 이용한 홍채 분류(Premade_Estimator_Iris.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Estimator/Premade_Estimator_Iris.py) - [참고페이지](https://www.tensorflow.org/tutorials/estimator/premade?hl=en)
 - [Estimators를 이용해 선형 모델 만들기(Linear_Model_With_Estimators.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Estimator/Linear_Model_With_Estimators.py) - [참고페이지](https://www.tensorflow.org/tutorials/estimator/linear?hl=en)
+- [Estimators를 이용해 결정 트리 모델 만들기(Boosted_Trees_With_Estimators.py)](https://github.com/parkjoohwan/Keras_basics/blob/master/Estimator/Boosted_Trees_With_Estimators.py) - [참고페이지](https://www.tensorflow.org/tutorials/estimator/boosted_trees?hl=en)
 # 필요 패키지 설치
 
 ```
 - GPU를 사용할때만 requirements를 이용할것
 pip install -r requirements_gpu.txt
+
+- CPU를 이용할 경우는 tensorflow.org에서 확인 후 설치
+혹은 requirements_gpu에서 gpu 버전만 제거 후 설치
+
 ```
 
 `CPU의 경우에는 tensorflow, tf-nightly를 cpu 버전으로 설치해야함`
